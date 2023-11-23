@@ -72,7 +72,7 @@ class StopwatchApp:
         ).pack()
         # self.update_stopwatches()
         self.next_index += 1
-        if self.next_index % MAX_ROWS == 0 and self.next_index > 1:
+        if self.next_index % MAX_ROWS == 0:
             self.column += 1
             self.row = 0
         else:
@@ -100,8 +100,6 @@ class StopwatchApp:
                     elapsed_time = time.time() - stopwatch.start_time
                 else:
                     elapsed_time = stopwatch.elapsed_time
-                # elapsed_time = (time.time() - stopwatch.start_time) if stopwatch.is_running else 0
-                # stopwatch.dynamiclabel.set(f"Stopwatch {i+1}: {elapsed_time:.2f} seconds")
                 stopwatch.label.config(text=f"Stopwatch {i+1}: {elapsed_time:.2f}")
     def update_stopwatches(self):
         thread = threading.Thread(target=self._update_stopwatches)
