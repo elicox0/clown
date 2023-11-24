@@ -1,2 +1,2 @@
-# clown
-A scary way to track time kids are out of class
+# timeout
+Stopwatches for tracking time kids spend outside of class
