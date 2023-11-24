@@ -84,20 +84,24 @@ class StopwatchApp:
             sw.is_running = True
             if sw.elapsed_time == 0: 
                 sw.start_time = time.time()
+            else:
+                sw.start_time = time.time()
 
     def stop_stopwatch(self, index):
         sw = self.stopwatches[index]
-        sw.elapsed_time = time.time() - sw.start_time
+        sw.elapsed_time += time.time() - sw.start_time
         sw.is_running = False
 
     def reset_stopwatch(self, index):
-        self.stopwatches[index].start_time = time.time()
+        sw = self.stopwatches[index]
+        sw.start_time = time.time()
+        sw.elapsed_time = 0
 
     def _update_stopwatches(self):
         while True:
             for i, stopwatch in enumerate(self.stopwatches):
                 if stopwatch.is_running:
-                    elapsed_time = time.time() - stopwatch.start_time
+                    elapsed_time = time.time() - stopwatch.start_time + stopwatch.elapsed_time
                 else:
                     elapsed_time = stopwatch.elapsed_time
                 stopwatch.label.config(text=f"Stopwatch {i+1}: {elapsed_time:.2f}")
